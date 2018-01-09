@@ -34,31 +34,22 @@ class View(Base):
 
     def thread(self):
         self.processing = True
-        # TODO
-        '''
-        Vorübergehende Lösung, um den Sync zu deaktivieren!
-        Entsprechende Option muss noch in die Config eingepflegt werden.
-        Grüße von Sundagraph
-        '''
-        sync_enabled = True
 
-        if sync_enabled:
+        self.console_out("[Status]: Start processing...")
+
+        if self.config.get("auto_sync"):
             sync = SyncController(self.filepaths)
             tupel = sync.audio_analyse()
-
-        self.set_progress(self.get_progress() + 2)
-
-        if sync_enabled:
             sync = CutterController(self.filepaths, tupel, 29)
             self.filepaths = sync.clap_sync("../import/video/")
+
+        self.set_progress(self.get_progress() + 2)
         time.sleep(1)
         self.set_progress(self.get_progress() + 3)
 
         self.progress = ProgressController(self, self.filepaths)
         self.__progress_thread = Thread(target=self.progress.calculate_progress)
         self.__progress_thread.start()
-
-        self.console_out("[Status]: Start processing...")
 
         if not self.config.get("debug"):
             self.__openPose = OpenPoseController()
