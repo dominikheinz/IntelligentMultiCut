@@ -75,8 +75,11 @@ class View(Base):
         # 0 : Pose Algorithm
         # 1 : Distance Algorithm
         # 2 : Multiperson Algorithm
+        show_graph = self.config.get("show_algo_graphs")
+        algo_id = self.config.get("algorithm")
+
         ctrl = AlgorithmController(self.metadata_controller)
-        cutframes = ctrl.run_algorithm(1, True) # int = welcher Algo, boolean = graph zeigen oder nicht zeigen
+        cutframes = ctrl.run_algorithm(algo_id, show_graph)
 
         self.set_progress(self.get_progress() + 5)
 
