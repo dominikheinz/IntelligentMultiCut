@@ -11,3 +11,6 @@ class App(Base):
     def __init__(self):
         self.__gui = GUI()
         self.__gui.root.mainloop()
+        self.restart = self.__gui.restart
+
+

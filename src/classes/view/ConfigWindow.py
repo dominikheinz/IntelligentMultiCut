@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter.ttk import Combobox
 import os
 from tkinter.ttk import Style
+from tkinter import messagebox
 from src.classes.view.View import View
 import json
 
@@ -200,11 +201,13 @@ class ConfigWindow(View):
             self.config.set("font_color", "black")
             self.config.set("color_bg", "white")
             self.config.set("theme", 1)
+        if(self.__settings['theme'] != self.__variables['theme'].get()):
 
-        # Wende Theme an (Nicht implementiert)
-        # self.apply_theme()
+            # Wende Theme an (Nicht implementiert)
+            self.apply_theme()
 
-        self.root.destroy()
+        else :
+            self.root.destroy()
 
 
         # Algorithmus speichern
@@ -230,10 +233,10 @@ class ConfigWindow(View):
     # Lade Theme Eigenschaften + Icon und Titel für Fenster
     def load_theme(self):
 
-        self.color_bg = self.config.get("color_bg")
-        self.color_fg = self.config.get("color_fg")
-        self.red = self.config.get("color_red")
-        self.font_color = self.config.get("font_color")
+        self.color_bg = self.gui.color_bg
+        self.color_fg = self.gui.color_fg
+        self.red = self.gui.red
+        self.font_color = self.gui.font_color
 
         self.root.configure(
             background=self.color_bg
@@ -423,24 +426,10 @@ class ConfigWindow(View):
         self.__variables['resolution']=new_variable
         self.__amount_widgets_frames[frame_name] += 1
 
-    # def apply_theme(self):
-    #     color_bg=self.config.get('color_bg')
-    #     color_font=self.config.get('font_color')
-    #     color_fg=self.config.get('color_fg')
-    #     amount_paths=len(self.gui.filepaths)
-    #     self.gui.container.config(bg=self.config.get('color_bg'))
-    #     self.gui.textbox_output.config(bg=color_bg, fg=color_font)
-    #
-    #     for count in range (0,amount_paths):
-    #         self.self.gui.dynamicWidgets[count]['button'].config(
-    #             bg=color_bg,
-    #             fg=color_font,
-    #             activeforeground=color_fg,
-    #             activebackground=color_bg,
-    #         )
-    #         self.self.gui.dynamicWidgets[count]['box'].config(bg=color_fg)
-    #
-    #     self.gui.dynamicWidgets[amount_paths+1]['button'].config(
-    #
-    #     )
+    def apply_theme(self):
+        if messagebox.askyesno("MultiCut neu laden?", "Die Anwendnung muss neu gestartet werden, damit die Änderung sichtbarwird wird. Jetzt neustarten?"):
+            self.gui.restart = True
+            self.gui.quit()
+        else:
+            self.root.destroy()
 

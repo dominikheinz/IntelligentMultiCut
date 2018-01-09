@@ -13,6 +13,9 @@ class GUI(View):
 
     def __init__(self):
 
+        # Auf True setzen, wenn die App nach dem Schließen neu gestartet werden soll
+        self.restart = False
+
         # Rufe übergeordneten Konstruktor auf
         super(GUI, self).__init__()
 
@@ -25,7 +28,7 @@ class GUI(View):
         # Farben
         self.color_bg = self.config.get("color_bg")
         self.color_fg = self.config.get("color_fg")
-        self.__red = self.config.get("color_red")
+        self.red = self.config.get("color_red")
         self.font_color = self.config.get("font_color")
 
         # Passwort für easteregg
@@ -199,7 +202,7 @@ class GUI(View):
                 self.box_filebrowse,
                 text="-",
                 font='bold',
-                bg=self.__red,
+                bg=self.red,
                 fg='white',
                 activebackground=self.color_bg,
                 activeforeground=self.color_fg,
@@ -242,7 +245,7 @@ class GUI(View):
         self.button_quit = Button(
             self.container,
             text="Quit",
-            bg=self.__red,
+            bg=self.red,
             fg='white',
             command=self.quit
         )
@@ -252,7 +255,7 @@ class GUI(View):
             height=2,
             width=15,
             activeforeground='white',
-            activebackground=self.__red,
+            activebackground=self.red,
             bd=0
         )
 
@@ -658,7 +661,7 @@ class GUI(View):
         self.root.destroy()
 
         print("[Status]: See you later ... 	Alligator");
-        os._exit(0)
+        # os._exit(0)
 
     def show_complete_window(self):
 
@@ -713,7 +716,7 @@ class GUI(View):
         self.button_quit = Button(
             self.complete_win,
             text="Cancel",
-            bg=self.__red,
+            bg=self.red,
             fg='white',
             command=lambda: [self.complete_win.destroy(),self.complete_win.grab_release()]
         )
@@ -748,7 +751,7 @@ class GUI(View):
             text="Save as",
             bg=self.color_fg,
             fg="white",
-            command=lambda:[self.save_file(),self.complete_win.destroy()]
+            command=lambda:[self.save_file()]
         )
         self.button_save.config(
             height=2,

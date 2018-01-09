@@ -34,31 +34,22 @@ class View(Base):
 
     def thread(self):
         self.processing = True
-        # TODO
-        '''
-        Vorübergehende Lösung, um den Sync zu deaktivieren!
-        Entsprechende Option muss noch in die Config eingepflegt werden.
-        Grüße von Sundagraph
-        '''
-        sync_enabled = True
 
-        if sync_enabled:
+        self.console_out("[Status]: Start processing...")
+
+        if self.config.get("auto_sync"):
             sync = SyncController(self.filepaths)
             tupel = sync.audio_analyse()
-
-        self.set_progress(self.get_progress() + 2)
-
-        if sync_enabled:
             sync = CutterController(self.filepaths, tupel, 29)
             self.filepaths = sync.clap_sync("../import/video/")
+
+        self.set_progress(self.get_progress() + 2)
         time.sleep(1)
         self.set_progress(self.get_progress() + 3)
 
         self.progress = ProgressController(self, self.filepaths)
         self.__progress_thread = Thread(target=self.progress.calculate_progress)
         self.__progress_thread.start()
-
-        self.console_out("[Status]: Start processing...")
 
         if not self.config.get("debug"):
             self.__openPose = OpenPoseController()
@@ -106,12 +97,6 @@ class View(Base):
         # Anzeige von Finish Fenster
         self.show_complete_window()
 
-        # Process Button wieder freigeben
-        self.button_process.config(state='normal')
-
-        #Progressbar resetten
-        self.set_progress(0)
-
 
     def save_file(self):
         # Hole Pfad aus Filebrowser
@@ -121,7 +106,10 @@ class View(Base):
         )
 
         if (path != ''):
-            shutil.copy('../export/video/output.avi',path)
+            shutil.move('../export/video/output.avi',path)
+
+        self.quit()
+
 
 
     def quit_thread(self):
