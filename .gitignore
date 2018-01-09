@@ -1,0 +1,19 @@
+src/lib/openpose
+!src/lib/openpose/readme.md
+.idea
+doc/samples
+**/*.DS_STORE
+Icon?
+~$*
+**/*.pyc #recursive for all folders
+**/__pycache__
+export/
+*.mp4
+*.avi
+*.wmv
+*.MOV
+venv/
+Intelligent_Multicut.bat
+src/lib/
+lib/
+tmp/
