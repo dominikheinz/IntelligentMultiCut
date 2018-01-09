@@ -14,7 +14,7 @@
     "max_cameras": 6,
     "openfolder": false,
     "openpose_facetracking": false,
-    "show_algo_graphs": true,
+    "show_algo_graphs": false,
     "theme": 0,
     "video_codec": "MJPG",
     "video_height": 1280,
