@@ -1,4 +1,4 @@
-# Projektmultimedia
+# Intelligent MultiCut
 
 ## Setup
 Synchronisiere dein lokales Repository mit dem Remote Repsoitory auf Github. Danach muss die OpenPose Demo in den Ordner `src/lib/openpose/` kopiert werden. Die Demo gibt es [hier](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md#installation---demo) zum Download.
