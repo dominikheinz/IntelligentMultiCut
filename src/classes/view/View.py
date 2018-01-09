@@ -94,12 +94,6 @@ class View(Base):
         # Anzeige von Finish Fenster
         self.show_complete_window()
 
-        # Process Button wieder freigeben
-        self.button_process.config(state='normal')
-
-        #Progressbar resetten
-        self.set_progress(0)
-
 
     def save_file(self):
         # Hole Pfad aus Filebrowser
@@ -109,7 +103,10 @@ class View(Base):
         )
 
         if (path != ''):
-            shutil.copy('../export/video/output.avi',path)
+            shutil.move('../export/video/output.avi',path)
+
+        self.quit()
+
 
 
     def quit_thread(self):
