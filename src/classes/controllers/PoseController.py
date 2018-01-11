@@ -18,30 +18,30 @@ class PoseController(Base):
         return self.__allFrames[frame_id].get_camera(cam_id)["people"]
 
     # Gibt den errechneten score fuer eine Kamera und einen Frame zurueck
-    def calc_pose_score(self, frame_id, cam_id):
+    def calc_pose_score(self, frame_id, cam_id, PersonNr):
 
-        precision = 0
-        person_count = self.count_people_in_frame(frame_id, cam_id)
         person_arr = self.get_body_nodes(frame_id, cam_id)
 
-        for x in range(0, person_count):
-            current_precision = 0
-            current_precision += person_arr[x]["neck"][2]
-            current_precision += person_arr[x]["left_shoulder"][2]
-            current_precision += person_arr[x]["left_elbow"][2]
-            current_precision += person_arr[x]["left_wrist"][2]
-            current_precision += person_arr[x]["right_shoulder"][2]
-            current_precision += person_arr[x]["right_elbow"][2]
-            current_precision += person_arr[x]["right_wrist"][2]
-            current_precision += person_arr[x]["left_hip"][2]
-            current_precision += person_arr[x]["left_knee"][2]
-            current_precision += person_arr[x]["left_foot"][2]
-            current_precision += person_arr[x]["right_hip"][2]
-            current_precision += person_arr[x]["right_knee"][2]
-            current_precision += person_arr[x]["right_foot"][2]
-            current_precision /= 13
+        current_precision = 0
+        current_precision += person_arr[PersonNr]["left_eye"][2]
+        current_precision += person_arr[PersonNr]["right_eye"][2]
+        current_precision += person_arr[PersonNr]["nose"][2]
+        current_precision += person_arr[PersonNr]["neck"][2]
+        current_precision += person_arr[PersonNr]["left_shoulder"][2]
+        current_precision += person_arr[PersonNr]["left_elbow"][2]
+        current_precision += person_arr[PersonNr]["left_wrist"][2]
+        current_precision += person_arr[PersonNr]["right_shoulder"][2]
+        current_precision += person_arr[PersonNr]["right_elbow"][2]
+        current_precision += person_arr[PersonNr]["right_wrist"][2]
+        current_precision += person_arr[PersonNr]["left_hip"][2]
+        current_precision += person_arr[PersonNr]["left_knee"][2]
+        current_precision += person_arr[PersonNr]["left_foot"][2]
+        current_precision += person_arr[PersonNr]["right_hip"][2]
+        current_precision += person_arr[PersonNr]["right_knee"][2]
+        current_precision += person_arr[PersonNr]["right_foot"][2]
+        current_precision /= 15
 
-            precision = current_precision
+        precision = current_precision
 
         if precision > self.__min_precision:
             return precision

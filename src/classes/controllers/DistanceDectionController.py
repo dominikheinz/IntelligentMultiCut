@@ -123,12 +123,12 @@ class DistanceDetectionController:
                     best_precision = precision
                     best_cam = z
 
-            result_array.append((best_cam, x))
+            #result_array.append((best_cam, x))
 
         gh = GraphHelper(score_array, self.__frames)
-        solution2 = gh.smooth_for_algo()
+        result_array = gh.smooth_for_algo()
         if show_graph:
 
             gh.show_algodata_graph(True, "Distance Score Curve")
 
-        return solution2
+        return result_array
