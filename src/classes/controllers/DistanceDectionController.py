@@ -97,10 +97,8 @@ class DistanceDetectionController:
 
 
     def run_distance_algorithm(self, show_graph):
-        best_cam = 0
         result_array = []
         score_array = []
-        solution2 = []
 
         # Iteriere alle frames
         for x in range(0, self.__frame_count):

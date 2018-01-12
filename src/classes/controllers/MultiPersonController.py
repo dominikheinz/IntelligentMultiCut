@@ -1,6 +1,7 @@
 from src.classes.controllers.GraphHelper import GraphHelper
 from src.classes.core.Base import Base
 from src.classes.controllers.DistanceDectionController import DistanceDetectionController
+from src.classes.controllers.PoseController import PoseController
 
 
 class MultiPersonController(Base):
@@ -17,9 +18,6 @@ class MultiPersonController(Base):
     def run_multiperson_most_people(self, show_graph):
 
         result_arr = []
-        choosen_cam = 0
-        last_cam = 0
-        last_cam_amount = 0
         score_array = []
 
         # Gehe durch alle frames
@@ -30,45 +28,42 @@ class MultiPersonController(Base):
             # Gehe durch alle Cams
             for y in range(0, self.__frames[x].get_camera_amount()):
 
-                # Personen werden gezählt und Kamera mit den meisten wird choosen_cam
+                # Personen werden gezählt in der Kamera in diesem Frame
                 people_count = self.get_amount_of_people(x, y)
-                print("People: ", people_count)
-                if people_count > most_people:
-                    most_people = people_count
-                    choosen_cam = y
+                person_counter = 0
+
+                # springe hier rein wenn die personen-anzahl über 0 fällt
+                if people_count != 0:
+                    po = PoseController(self.__frames)
+
+                    # Gehe durch alle Personen in der Kamera berechne den score und zähle die tatsächlichen Personen score(<0,1)
+                    for z in range(0, people_count):
+
+                        person_value = po.calc_pose_score(x,y,z)
+
+                        # zähle alle personen
+                        if(person_value != 0):
+                            person_counter += 1
+
+                print("People: ", person_counter)
+                if person_counter > most_people:
+                    most_people = person_counter
 
                 # Score_array für den graphen
-                score_array.append((y, self.get_amount_of_people(x, y)))
+                score_array.append((y, person_counter))
 
-            # Prüfe den Frame von der Kamera die zuletzt die beste war auf gleichheit der Menge an Kameras mit diesem frame
-            if last_cam_amount == self.__frames[x].get_camera_amount():
-
-                # Wenn Personen-Anzahl gleich groß ist wie in der letzten ausgewählten Cam nehme wieder die gleiche
-                if (self.get_amount_of_people(x, last_cam)) == (self.get_amount_of_people(x, choosen_cam)):
-                    choosen_cam = last_cam
-
-            # überschreibe last_cam_amunt und last_cam
-            last_cam_amount = self.__frames[x].get_camera_amount()
-            last_cam = choosen_cam
-
-            print("Frame : ", x, " choosencam : ", choosen_cam)
-
-            # ungefiltertes Ergebnis-Array
-            result_arr.append((choosen_cam, x))
+        gh = GraphHelper(score_array, self.__frames)
+        result_arr = gh.smooth_for_algo()
 
         if show_graph:
             # Grapherstellung
-            gh = GraphHelper(score_array, self.__frames)
-            gh.show_algodata_graph(False, "Multiperson Score Curve")
+            gh.show_algodata_graph(True, "Multiperson Score Curve")
 
         return result_arr
 
     def run_multiperson_close_up(self, show_graph):
         result_arr = []
-        choosen_cam = 0
         score_array = []
-
-
 
         # Gehe durch alle frames
         for x in range(0, self.__frame_count):

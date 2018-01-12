@@ -5,7 +5,7 @@ from src.classes.core.Base import Base
 class PoseController(Base):
     def __init__(self, all_frames):
         self.__allFrames = all_frames
-        self.__min_precision = 0.1
+        self.__min_precision = 0.2
         self.__default_cam = 0
         self.__threshold = 26  # Kamerawechsel nicht schneller als 26 fps
 
@@ -49,7 +49,6 @@ class PoseController(Base):
             return 0
 
     def run_pose_algorithm(self, show_graph):
-        best_cam = 0
         result_array = []
         score_array = []
 
@@ -59,7 +58,7 @@ class PoseController(Base):
             # Iteriere alle cams
             for z in range(0, self.__allFrames[x].get_camera_amount()):
                 # Analysiere aktuellen frame
-                precision = self.calc_pose_score(x, z)
+                precision = self.calc_pose_score(x, z, 0)
                 score_array.append((z, precision))
 
                 print("Frame: ", x, "Cam: ", z, "Score: ", precision)
