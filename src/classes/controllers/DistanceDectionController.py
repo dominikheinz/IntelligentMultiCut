@@ -117,13 +117,6 @@ class DistanceDetectionController:
                     precision = 0
 
                 score_array.append((z, precision))
-                # Vergleiche aktuelle Praezision mit bester Praezision
-
-                if (precision > best_precision):
-                    best_precision = precision
-                    best_cam = z
-
-            #result_array.append((best_cam, x))
 
         gh = GraphHelper(score_array, self.__frames)
         result_array = gh.smooth_for_algo()
