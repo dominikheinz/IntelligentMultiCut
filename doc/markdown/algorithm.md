@@ -19,6 +19,13 @@ Er wird im Konstruktor mit einem <code>MetaDataController</code> Objekt initiali
 Die Klasse bietet zwei Funktionen <code>run_algorithm(self, algo_id)</code> und <code>filter_cut_frames(self, switch_frames)</code>.
 Die <code>filter_cut_frames(self, switch_frames)</code> Methode extrahiert die Frames an denen die Videos gecuttet werden sollen.
 Die <code>run_algorithm(self, algo_id)</code> Methode wendet einen Algorithmus auf die im Konstruktor übergebenen Metadaten an. Der Parameter <code>algo_id</code> kann <code>0</code>, <code>1</code>, <code>2</code> oder <code>3</code> sein und verwendet dementsprechend die versch. Algorithmen.
+Hier ist das Beispiel einer Person die in einem Gang zwischen zwei Kameras auf und ab laeuft.
+
+![alt-text-2](https://i.imgur.com/alesAzE.jpg)
+
+Ist die Person mit dem Ruecken zu der einen Kamera gedreht ist sie von der Vorderseite von der anderen Seite zu sehen.
+Dementsprechend ist die Genauigkeit der Posenerkennung geringer wenn man die Person von der Rueckseite sieht.
+Der Graph zeigt wie die Genaugkeit wischen den zwei Kameras zyklisch wechselt, - mit jeder Drehung weg von der einen zu der anderen Kamera.
 
 ### 2. Algorithmen
 
