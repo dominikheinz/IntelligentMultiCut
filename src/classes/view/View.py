@@ -8,6 +8,7 @@ from src.classes.controllers.ProgressController import ProgressController
 from threading import *
 from src.classes.controllers.SyncController import SyncController
 from src.classes.controllers.CleanController import CleanerController
+from src.classes.controllers.AudioController import AudioController
 import time
 from tkinter import filedialog
 import shutil
@@ -37,10 +38,11 @@ class View(Base):
 
         self.console_out("[Status]: Start processing...")
 
+        sync = SyncController(self.filepaths)
+        sync_tuples = sync.audio_analyse()
+
         if self.config.get("auto_sync"):
-            sync = SyncController(self.filepaths)
-            tupel = sync.audio_analyse()
-            sync = CutterController(self.filepaths, tupel, 29)
+            sync = CutterController(self.filepaths, sync_tuples, 30)
             self.filepaths = sync.clap_sync("../import/video/")
 
         self.set_progress(self.get_progress() + 2)
@@ -88,10 +90,17 @@ class View(Base):
             self.console_out("Cut-Frame : " + str(cutframes[x]))
 
         # Videocutter
-        default_fps = 30
-        cutter = CutterController(self.filepaths, cutframes, default_fps)
+        cutter = CutterController(self.filepaths, cutframes, 30)
         cutter.cut('../export/video/')
         self.set_progress(100)
+
+        # AudioController
+        if self.config.get("audio_enabled"):
+            longest_video = cutframes[-1][0]
+            video_path = "../export/video/output.avi"
+            audio_path = "../import/tmp/" + sync_tuples[longest_video][0] + ".mp3"
+            audio_mixer = AudioController(video_path,audio_path)
+            audio_mixer.add_audio()
 
         self.console_out("Processing Complete!")
 

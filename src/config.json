@@ -2,6 +2,7 @@
     "algorithm": 1,
     "app_title": "Intelligent MultiCut",
     "app_version": 0.1,
+    "audio_enabled": true,
     "auto_sync": true,
     "color_bg": "white",
     "color_fg": "#3299FD",
