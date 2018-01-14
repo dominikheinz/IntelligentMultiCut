@@ -58,7 +58,12 @@ class PoseController(Base):
             # Iteriere alle cams
             for z in range(0, self.__allFrames[x].get_camera_amount()):
                 # Analysiere aktuellen frame
-                precision = self.calc_pose_score(x, z, 0)
+
+                if self.count_people_in_frame(x, z) != 0:
+                    precision = self.calc_pose_score(x, z, 0)
+                else:
+                    precision = 0
+
                 score_array.append((z, precision))
 
                 print("Frame: ", x, "Cam: ", z, "Score: ", precision)
