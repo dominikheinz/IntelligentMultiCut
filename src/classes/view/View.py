@@ -88,7 +88,8 @@ class View(Base):
             self.console_out("Cut-Frame : " + str(cutframes[x]))
 
         # Videocutter
-        cutter = CutterController(self.filepaths, cutframes, 29)
+        default_fps = 30
+        cutter = CutterController(self.filepaths, cutframes, default_fps)
         cutter.cut('../export/video/')
         self.set_progress(100)
 
