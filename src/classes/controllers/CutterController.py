@@ -163,9 +163,11 @@ class CutterController(Base):
 
             # inkrementiert den frame_counter
             frame_counter += 1
+            '''
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 #print('[DEBUG] FINSHED!')
                 break
+            '''
 
         self.close_reader_writer()
 
@@ -219,9 +221,11 @@ class CutterController(Base):
 
                 # inkrementiert den frame_counter
                 frame_counter += 1
+                '''
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     #print('[DEBUG] FINSHED 1 SYNC!')
                     break
+                '''
 
         self.close_reader_writer()
 
