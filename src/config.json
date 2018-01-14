@@ -16,7 +16,7 @@
     "openpose_facetracking": false,
     "show_algo_graphs": true,
     "theme": 1,
-    "video_codec": "MJPG",
+    "video_codec": "DIVX",
     "video_height": 1280,
     "video_width": 720
 }
