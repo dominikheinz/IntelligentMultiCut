@@ -56,4 +56,17 @@ Nach erfolgreicher Bearbeitung gibt die <code>def run_distance_algorithm(self, s
 
 Nicht selten kommt es vor dass das OpenPose Framework bei der Videoanalyse Personen falsch erkennt. Diese Messfehler beinflussen die Ergebnisse der Algorithmen. 
 Aus diesem Grund werden Messdaten mithilfe eines Smoothing Algorithmus korrigiert.
-Die Messdaten werden mithilfe von median filtering geglättet.
+Die Messdaten werden mithilfe von <b>median filtering</b> geglättet.
+Dabei gibt der smoothing factor <code>s</code> an wieviele Werte links und rechts in die Glattung mit einberechnet werden.
+Die Werte werden nach groesse sortiert und der mittlere Wert wird verwendet.
+
+Hier ein Beispiel von einem un-gesmoothtem Graph (am Bsp Distance Detection Algorithmus):
+![alt-text-2](https://i.imgur.com/mniifra.jpg)
+
+Man erkennt die Ausschlaege in dem Graphen, was ohne einen Threshold zu flickering beim Output-Video kommt.
+Die Messfehler kommen grossteils wegen der <b>Messfehler von Openpose</b>.
+Hier der selbe Graph nach der Fehlerkorrektur:
+
+![alt-text-2](https://i.imgur.com/NC5ECoW.jpg)
+
+Die Ubergange haben keine grossen Ausreisser mehr und die Ubergange sind glatter.
