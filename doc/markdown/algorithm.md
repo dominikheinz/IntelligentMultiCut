@@ -31,7 +31,13 @@ Der boolsche Parameter <code>show_graph</code> bietet die Möglichkeit einen Gra
 
 #### 2.2. Multiperson Closeup
 
+Der Multiperson-Closeup Algorithmus vereint den Distance Detection Algorithmus und den Mutiperson Algorithmus.
+Der Algorithmus prueft von allen erkannten Personen in einem Frame welche am naehsten zur Kamera steht.
+Die Kamera in der eine Person am naehsten zur Kamera steht bekommt einen hoeheren Score und wird dementsprechend den anderen bevorzugt.
+
 #### 2.3. Multiperson Peoplecount
+
+Der Multiperson-Peoplecount Algorithmus prueft alle erkannten Personen in einem Frame. Die Kameraperspektive in der die meisten Personen erkannt werden, wird bevorzugt.
 
 #### 2.4. DistanceDetection
 
