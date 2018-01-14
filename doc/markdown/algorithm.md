@@ -59,6 +59,10 @@ Aus diesem Grund werden Messdaten mithilfe eines Smoothing Algorithmus korrigier
 Die Messdaten werden mithilfe von <b>median filtering</b> geglättet.
 Dabei gibt der smoothing factor <code>s</code> an wieviele Werte links und rechts in die Glattung mit einberechnet werden.
 Die Werte werden nach groesse sortiert und der mittlere Wert wird verwendet.
+Nehmen wir an wir haben ein smoothing factor von <code>3</code>
+Das heisst wir pruefen von unserem aktuellen Wert, bspw. <code>7</code> je 3 Werte davor und danach.
+Das koennte Bspw so aussehen: <code>[4,8,6,7,9,6,4]</code>. Diese Werte werden sortiert. Das ergibt folgende Zahlenfolge:
+<code>[4,4,6,6,7,8,9]</code>. Davon wird der mittlere Wert, also <code>6</code> wird verwerwendet.
 
 Hier ein Beispiel von einem un-gesmoothtem Graph (am Bsp Distance Detection Algorithmus):
 ![alt-text-2](https://i.imgur.com/mniifra.jpg)
