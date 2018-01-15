@@ -17,6 +17,6 @@
     "show_algo_graphs": false,
     "theme": 0,
     "video_codec": "MJPG",
-    "video_height": 720,
-    "video_width": 1280
+    "video_height": 1280,
+    "video_width": 720
 }

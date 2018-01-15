@@ -46,12 +46,12 @@ class OpenPoseController(Base):
 
             file = os.path.abspath(file)
 
-            param = " --video " + file + " --write_keypoint_json " + os.path.abspath(
-                "../export/json/" + str(self.video_counter)) + display + face_tracking
+            param = " --video \"" + file + "\" --write_keypoint_json \"" + os.path.abspath(
+                "../export/json/" + str(self.video_counter)) + "\"" + display  + face_tracking
 
             # Führt die OpenPose Demo aus mit allen zur Verfügung gestellten Parametern.
             self.__execute__(param)
-            
+
             # Erhöht den Video Counter, um einen neuen Ordner für weitere Videospuren mit einem anderen Namen erstellen zu können.
             self.video_counter += 1
 
@@ -81,6 +81,13 @@ class OpenPoseController(Base):
             # if the process is alive
             if (process.poll() == None):
                 running += 1
+
+        # Hot Fix Bug
+        # Erlaube maximal einen Thread für OpenPose
+        if(running >= 1):
+            return False
+        else:
+            return True
 
         if(running <= amount_of_processes and psutil.cpu_percent(interval=0.5) <= max_cpu_usage):
             return True
