@@ -11,6 +11,7 @@ from src.classes.controllers.CleanController import CleanerController
 import time
 from tkinter import filedialog
 import shutil
+import os
 import pprint
 
 
@@ -33,6 +34,8 @@ class View(Base):
         self.__running_thread.start()
 
     def thread(self):
+
+
         self.processing = True
 
         self.console_out("[Status]: Start processing...")
@@ -98,6 +101,8 @@ class View(Base):
         self.show_complete_window()
 
 
+
+
     def save_file(self):
         # Hole Pfad aus Filebrowser
         path = filedialog.asksaveasfilename(
@@ -105,8 +110,15 @@ class View(Base):
             filetypes= [("AVI files", "*.avi")]
         )
 
+
+
         if (path != ''):
             shutil.move('../export/video/output.avi',path)
+
+        folder_path=path.split('.')
+        folder_path=folder_path[-1]
+        if(self.config.get('openfolder') == True):
+            os.system("start "+folder_path)
 
         self.quit()
 
