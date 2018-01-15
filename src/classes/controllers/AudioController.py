@@ -17,6 +17,6 @@ class AudioController:
 
 
     def add_audio(self):
-        self.__shell_command = 'ffmpeg -i ' + self.__source_video + ' -i ' + self.__source_audio + ' -codec copy'
+        self.__shell_command = 'ffmpeg -i ' + self.__source_video + ' -i ' + self.__source_audio + ' -codec copy -shortest ' + self.__source_video
         print(self.__shell_command)
         call(self.__shell_command, shell=True)
