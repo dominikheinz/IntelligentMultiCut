@@ -28,10 +28,23 @@ Der Singleperson-Algorithmus errechnet errechnet in jedem Frame von der erkannte
 Anschliessend wird davon der Durchschnitt errechnet. Das hat zur Folge die Kamera in der die Person bei der mehr Gelenke erkannt werden einen höheren Score zugeteilt bekommen. Dementsprechend wird immer auf die Kamera geschaltet in der von der Person möglichst viele Körperteile mit einer hohen Genauigkeit erkannt werden.
 Die Methode <code>def run_pose_algorithm(self, show_graph):</code> wendet den Algorithmus auf die im Konstruktor übergebenen Frames an und gibt das ein Array zurück das angibt wie die Clips geschnitten werden müssen.
 Der boolsche Parameter <code>show_graph</code> bietet die Möglichkeit einen Graphen nach erfolgreicher Prozessierung anzuzeigen um nachvollziehen zu können wie der Algorithmus gearbeitet hat.
+Hier ist das Beispiel einer Person die in einem Gang zwischen zwei Kameras auf und ab laeuft.
+
+![alt-text-2](https://i.imgur.com/alesAzE.jpg)
+
+Ist die Person mit dem Ruecken zu der einen Kamera gedreht ist sie von der Vorderseite von der anderen Seite zu sehen.
+Dementsprechend ist die Genauigkeit der Posenerkennung geringer wenn man die Person von der Rueckseite sieht.
+Der Graph zeigt wie die Genaugkeit wischen den zwei Kameras zyklisch wechselt, - mit jeder Drehung weg von der einen zu der anderen Kamera.
 
 #### 2.2. Multiperson Closeup
 
+Der Multiperson-Closeup Algorithmus vereint den Distance Detection Algorithmus und den Mutiperson Algorithmus.
+Der Algorithmus prueft von allen erkannten Personen in einem Frame welche am naehsten zur Kamera steht.
+Die Kamera in der eine Person am naehsten zur Kamera steht bekommt einen hoeheren Score und wird dementsprechend den anderen bevorzugt.
+
 #### 2.3. Multiperson Peoplecount
+
+Der Multiperson-Peoplecount Algorithmus prueft alle erkannten Personen in einem Frame. Die Kameraperspektive in der die meisten Personen erkannt werden, wird bevorzugt.
 
 #### 2.4. DistanceDetection
 
@@ -50,4 +63,21 @@ Nach erfolgreicher Bearbeitung gibt die <code>def run_distance_algorithm(self, s
 
 Nicht selten kommt es vor dass das OpenPose Framework bei der Videoanalyse Personen falsch erkennt. Diese Messfehler beinflussen die Ergebnisse der Algorithmen. 
 Aus diesem Grund werden Messdaten mithilfe eines Smoothing Algorithmus korrigiert.
-Die Messdaten werden mithilfe von median filtering geglättet.
+Die Messdaten werden mithilfe von <b>median filtering</b> geglättet.
+Dabei gibt der smoothing factor <code>s</code> an wieviele Werte links und rechts in die Glattung mit einberechnet werden.
+Die Werte werden nach groesse sortiert und der mittlere Wert wird verwendet.
+Nehmen wir an wir haben ein smoothing factor von <code>3</code>
+Das heisst wir pruefen von unserem aktuellen Wert, bspw. <code>7</code> je 3 Werte davor und danach.
+Das koennte Bspw so aussehen: <code>[4,8,6,7,9,6,4]</code>. Diese Werte werden sortiert. Das ergibt folgende Zahlenfolge:
+<code>[4,4,6,6,7,8,9]</code>. Davon wird der mittlere Wert, also <code>6</code> wird verwerwendet.
+
+Hier ein Beispiel von einem un-gesmoothtem Graph (am Bsp Distance Detection Algorithmus):
+![alt-text-2](https://i.imgur.com/mniifra.jpg)
+
+Man erkennt die Ausschlaege in dem Graphen, was ohne einen Threshold zu flickering beim Output-Video kommt.
+Die Messfehler kommen grossteils wegen der <b>Messfehler von Openpose</b>.
+Hier der selbe Graph nach der Fehlerkorrektur:
+
+![alt-text-2](https://i.imgur.com/NC5ECoW.jpg)
+
+Die Ubergange haben keine grossen Ausreisser mehr und die Ubergange sind glatter.

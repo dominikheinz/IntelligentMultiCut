@@ -1,13 +1,13 @@
-# Projektmultimedia
+# Intelligent MultiCut
 
 ## Setup
 Synchronisiere dein lokales Repository mit dem Remote Repsoitory auf Github. Danach muss die OpenPose Demo in den Ordner `src/lib/openpose/` kopiert werden. Die Demo gibt es [hier](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation.md#installation---demo) zum Download.
 
 
 ## Dokumentationen 
-* [Klassen und Architektur](https://github.com/andredoering/multimedia/blob/master/src/README.md)
-* [Best Practise Error Ausgaben](https://github.com/andredoering/multimedia/blob/master/doc/markdown/errors.md)
-* [Algorithmen Erklärung](https://github.com/andredoering/multimedia/blob/master/doc/markdown/algorithm.md)
+* [Klassen und Architektur](https://github.com/andredoering/multicut/blob/master/src/README.md)
+* [Best Practise Error Ausgaben](https://github.com/andredoering/multicut/blob/master/doc/markdown/errors.md)
+* [Algorithmen Erklärung](https://github.com/andredoering/multicut/blob/master/doc/markdown/algorithm.md)
 
 ## Hinzufügen von Config Attributen
 1. Füge ein weiteres Key-Value Pair in die `src/config.json`. Es gehen auch  auch assoziative Arrays als Value. Tutorial zu [JSON](https://www.w3schools.com/js/js_json_syntax.asp)
