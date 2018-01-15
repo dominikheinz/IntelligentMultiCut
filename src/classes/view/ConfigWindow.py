@@ -427,8 +427,7 @@ class ConfigWindow(View):
         self.__amount_widgets_frames[frame_name] += 1
 
     def apply_theme(self):
-        if messagebox.askyesno("Reload MultiCut?", "To apply theme changes, you have to restart the application. Do you want to restart now? "):
-            self.gui.restart = True
+        if messagebox.askyesno("Reload MultiCut?", "To apply theme changes, you have to restart the application. Do you want to quit now? "):
             self.gui.quit()
         else:
             self.root.destroy()

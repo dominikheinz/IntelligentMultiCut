@@ -2,7 +2,7 @@
     "algorithm": 1,
     "app_title": "Intelligent MultiCut",
     "app_version": 1.0,
-    "auto_sync": false,
+    "auto_sync": true,
     "color_bg": "#1D1D1D",
     "color_fg": "#3299FD",
     "color_red": "#E81123",

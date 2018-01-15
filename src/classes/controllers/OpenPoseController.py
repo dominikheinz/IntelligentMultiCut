@@ -82,6 +82,13 @@ class OpenPoseController(Base):
             if (process.poll() == None):
                 running += 1
 
+        # Hot Fix Bug
+        # Erlaube maximal einen Thread für OpenPose
+        if(running >= 1):
+            return False
+        else:
+            return True
+
         if(running <= amount_of_processes and psutil.cpu_percent(interval=0.5) <= max_cpu_usage):
             return True
         else:

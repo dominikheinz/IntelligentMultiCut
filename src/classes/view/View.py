@@ -122,3 +122,5 @@ class View(Base):
         # Beendet OpenPose
         if not self.__openPose == False:
             self.__openPose.kill()
+
+        os._exit(0)

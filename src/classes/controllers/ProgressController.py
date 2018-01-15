@@ -67,7 +67,11 @@ class ProgressController(Base):
                 #print("[ProgressController]: Current progress: " + str(self.__current_progress) + " percent")
 
                 new_progress = old_progress + self.__current_progress
-                self.gui.set_progress(new_progress)
+
+                if("set_progress" in dir(self.gui)):
+                    self.gui.set_progress(new_progress)
+                else:
+                    exit(0)
             else:
                 true = 1
                 #print("Waiting for json folder: '"+str(folder_index)+"' to be created...")

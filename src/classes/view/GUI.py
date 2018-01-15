@@ -93,7 +93,7 @@ class GUI(View):
 
         # Verhindern dass Größe des Fensters vom Benutzer angepasst werden kann
         if (self.__cameras > 6):
-            self.console_out("Only up to 6 files allowed")
+            self.console_out("Only up to6 files allowed")
             self.__cameras = 6
 
         if (self.__cameras < 2):
