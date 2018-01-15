@@ -88,14 +88,12 @@ class CutterController(Base):
             self.__reader_objects.append(cv2.VideoCapture(self.__source_path[reader_cnt]))
             self.__reader_objects[reader_cnt].open(self.__source_path[reader_cnt])
 
-          # vergleicht die FPS aller Videos und wirft gegebenenfalls eine exception aus
-
-        if reader_cnt == 0:
-            fps_reference = self.__reader_objects[reader_cnt].get(cv2.CAP_PROP_FPS)
-        else:
-            equal_fps = equal_fps & (
-            fps_reference == self.__reader_objects[reader_cnt].get(cv2.CAP_PROP_FPS))
-
+            # vergleicht die FPS aller Videos und wirft gegebenenfalls eine exception aus
+            if reader_cnt == 0:
+                fps_reference = self.__reader_objects[reader_cnt].get(cv2.CAP_PROP_FPS)
+            else:
+                equal_fps = equal_fps and (
+                fps_reference == self.__reader_objects[reader_cnt].get(cv2.CAP_PROP_FPS))
 
         try:
             if not equal_fps:
