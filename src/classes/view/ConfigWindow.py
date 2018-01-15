@@ -35,6 +35,7 @@ class ConfigWindow(View):
         self.create_frame("Resolution")
         self.create_frame("Algorithm")
         self.create_frame("Miscellaneous")
+        self.create_frame("Video-Codec")
 
 
         # Füge Checkboxen zu frames hinzu
@@ -49,6 +50,7 @@ class ConfigWindow(View):
         # Füge radiobuttons zu frames hinzu
         self.insert_radiobuttons("Theme", ["Dark-Mode", "Light-Mode"], "theme")
         self.insert_radiobuttons("Algorithm",["Single - Person", "Distance - Detection","Multiperson - Amount","Multiperson - Closeup"],"algorithm")
+        self.insert_radiobuttons("Video-Codec", ["MJPG (large size)", "DIVX (small size)"], "video_codec")
 
         #Füge dropdown Menü für auflösung hinzu
         self.insert_resolution_dropdown("Resolution")
@@ -229,6 +231,13 @@ class ConfigWindow(View):
         values=resolution.split("x")
         self.config.set('video_width', int(values[0]))
         self.config.set('video_height', int(values[1]))
+
+        # Video Codec speichern
+        if (self.__variables['video_codec'].get() == 0):
+            self.config.set("video_codec", 'MJPG')
+
+        if (self.__variables['video_codec'].get() == 1):
+            self.config.set("video_codec", 'DIVX')
 
     # Lade Theme Eigenschaften + Icon und Titel für Fenster
     def load_theme(self):

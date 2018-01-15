@@ -6,16 +6,21 @@ import os
 
 
 class Error(Exception):
-   # Base Klasse für exceptions
-   pass
+    # Base Klasse für exceptions
+    pass
 
 class NoTuplesReceived(Error):
-   # wenn die Tupel-Liste leer ist
-   pass
+    # wenn die Tupel-Liste leer ist
+    pass
 
 class NoSourceFound(Error):
-   # wenn die Quellpfad-Liste leer ist
-   pass
+    # wenn die Quellpfad-Liste leer ist
+    pass
+
+class DifferentFps(Error):
+    # wenn die Cams unterschiedliche FPS haben
+    pass
+
 
 
 class CutterController(Base):
@@ -73,11 +78,31 @@ class CutterController(Base):
         except NoSourceFound:
             print("No source video was found! Source path list is empty!")
 
+        fps_reference = self.__frame_rate
+        equal_fps = True
+
+
         # erstellt Reader-Objekte
         for reader_cnt in range(0, self.get_num_of_src()):
 
             self.__reader_objects.append(cv2.VideoCapture(self.__source_path[reader_cnt]))
             self.__reader_objects[reader_cnt].open(self.__source_path[reader_cnt])
+
+            # vergleicht die FPS aller Videos und wirft gegebenenfalls eine exception aus
+            if reader_cnt == 0:
+                fps_reference = self.__reader_objects[reader_cnt].get(cv2.CAP_PROP_FPS)
+            else:
+                equal_fps = equal_fps and (
+                fps_reference == self.__reader_objects[reader_cnt].get(cv2.CAP_PROP_FPS))
+
+        try:
+            if not equal_fps:
+                raise DifferentFps
+        except DifferentFps:
+            print("Video framerates are different! This might create unwanted effects!")
+
+        self.__frame_rate = fps_reference
+
 
         # erstellt Writer-Objekte
         for writer_cnt in range(0, self.get_num_of_out()):
