@@ -16,7 +16,6 @@ import pprint
 
 
 class View(Base):
-
     __progress_thread = 0
     filepaths = []
 
@@ -26,7 +25,6 @@ class View(Base):
         self.cleaner = CleanerController()
         self.__openPose = False
 
-
     def process(self):
         print("cleaning old files ...")
         self.cleaner.clean_workspace()
@@ -34,7 +32,6 @@ class View(Base):
         self.__running_thread.start()
 
     def thread(self):
-
 
         self.processing = True
 
@@ -100,29 +97,23 @@ class View(Base):
         # Anzeige von Finish Fenster
         self.show_complete_window()
 
-
-
-
     def save_file(self):
         # Hole Pfad aus Filebrowser
         path = filedialog.asksaveasfilename(
             initialfile="output.avi",
-            filetypes= [("AVI files", "*.avi")]
+            filetypes=[("AVI files", "*.avi")]
         )
 
-
-
         if (path != ''):
-            shutil.move('../export/video/output.avi',path)
+            shutil.move('../export/video/output.avi', path)
 
-        folder_path=path.split('.')
-        folder_path=folder_path[-1]
-        if(self.config.get('openfolder') == True):
-            os.system("start "+folder_path)
+        index = path.rfind('/')
+        folder_path = path[0:index]
+
+        if (self.config.get('openfolder') == True):
+            os.system("start " + folder_path)
 
         self.quit()
-
-
 
     def quit_thread(self):
         self.console_out("[Status]: Shutdown application... Goodbye Butterfly")
