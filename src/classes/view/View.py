@@ -99,10 +99,25 @@ class View(Base):
 
     def save_file(self):
         # Hole Pfad aus Filebrowser
-        path = filedialog.asksaveasfilename(
+        full_path = filedialog.asksaveasfilename(
             initialfile="output.avi",
             filetypes=[("AVI files", "*.avi")]
         )
+
+        slash_index = full_path.rfind('/')
+
+        path=full_path[:slash_index]
+        file_name=full_path[slash_index:]
+
+        if(file_name.count('.')==1):
+            dot_index=file_name.rfind('.')
+            path = path + "/" + file_name[:dot_index]+'.avi'
+
+        if (file_name.count('.') == 0):
+            path= path +'/'+file_name+'.avi'
+
+        if (file_name.count('.') > 1):
+            path = path + '.avi'
 
         if (path != ''):
             shutil.move('../export/video/output.avi', path)

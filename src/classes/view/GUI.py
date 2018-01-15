@@ -718,7 +718,7 @@ class GUI(View):
             text="Cancel",
             bg=self.red,
             fg='white',
-            command=lambda: [self.complete_win.destroy(),self.complete_win.grab_release()]
+            command=lambda: [self.complete_win.destroy(),self.complete_win.grab_release(),self.quit()]
         )
 
         self.button_quit.configure(
@@ -751,7 +751,7 @@ class GUI(View):
             text="Save as",
             bg=self.color_fg,
             fg="white",
-            command=lambda:[self.save_file()]
+            command=lambda:[self.complete_win.destroy(),self.save_file()]
         )
         self.button_save.config(
             height=2,
