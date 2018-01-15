@@ -5,7 +5,7 @@ from src.classes.core.Base import Base
 class PoseController(Base):
     def __init__(self, all_frames):
         self.__allFrames = all_frames
-        self.__min_precision = 0.1
+        self.__min_precision = 0.2
         self.__default_cam = 0
         self.__threshold = 26  # Kamerawechsel nicht schneller als 26 fps
 
@@ -18,30 +18,30 @@ class PoseController(Base):
         return self.__allFrames[frame_id].get_camera(cam_id)["people"]
 
     # Gibt den errechneten score fuer eine Kamera und einen Frame zurueck
-    def calc_pose_score(self, frame_id, cam_id):
+    def calc_pose_score(self, frame_id, cam_id, PersonNr):
 
-        precision = 0
-        person_count = self.count_people_in_frame(frame_id, cam_id)
         person_arr = self.get_body_nodes(frame_id, cam_id)
 
-        for x in range(0, person_count):
-            current_precision = 0
-            current_precision += person_arr[x]["neck"][2]
-            current_precision += person_arr[x]["left_shoulder"][2]
-            current_precision += person_arr[x]["left_elbow"][2]
-            current_precision += person_arr[x]["left_wrist"][2]
-            current_precision += person_arr[x]["right_shoulder"][2]
-            current_precision += person_arr[x]["right_elbow"][2]
-            current_precision += person_arr[x]["right_wrist"][2]
-            current_precision += person_arr[x]["left_hip"][2]
-            current_precision += person_arr[x]["left_knee"][2]
-            current_precision += person_arr[x]["left_foot"][2]
-            current_precision += person_arr[x]["right_hip"][2]
-            current_precision += person_arr[x]["right_knee"][2]
-            current_precision += person_arr[x]["right_foot"][2]
-            current_precision /= 13
+        current_precision = 0
+        current_precision += person_arr[PersonNr]["left_eye"][2]
+        current_precision += person_arr[PersonNr]["right_eye"][2]
+        current_precision += person_arr[PersonNr]["nose"][2]
+        current_precision += person_arr[PersonNr]["neck"][2]
+        current_precision += person_arr[PersonNr]["left_shoulder"][2]
+        current_precision += person_arr[PersonNr]["left_elbow"][2]
+        current_precision += person_arr[PersonNr]["left_wrist"][2]
+        current_precision += person_arr[PersonNr]["right_shoulder"][2]
+        current_precision += person_arr[PersonNr]["right_elbow"][2]
+        current_precision += person_arr[PersonNr]["right_wrist"][2]
+        current_precision += person_arr[PersonNr]["left_hip"][2]
+        current_precision += person_arr[PersonNr]["left_knee"][2]
+        current_precision += person_arr[PersonNr]["left_foot"][2]
+        current_precision += person_arr[PersonNr]["right_hip"][2]
+        current_precision += person_arr[PersonNr]["right_knee"][2]
+        current_precision += person_arr[PersonNr]["right_foot"][2]
+        current_precision /= 15
 
-            precision = current_precision
+        precision = current_precision
 
         if precision > self.__min_precision:
             return precision
@@ -49,7 +49,6 @@ class PoseController(Base):
             return 0
 
     def run_pose_algorithm(self, show_graph):
-        best_cam = 0
         result_array = []
         score_array = []
 
@@ -59,7 +58,12 @@ class PoseController(Base):
             # Iteriere alle cams
             for z in range(0, self.__allFrames[x].get_camera_amount()):
                 # Analysiere aktuellen frame
-                precision = self.calc_pose_score(x, z)
+
+                if self.count_people_in_frame(x, z) != 0:
+                    precision = self.calc_pose_score(x, z, 0)
+                else:
+                    precision = 0
+
                 score_array.append((z, precision))
 
                 print("Frame: ", x, "Cam: ", z, "Score: ", precision)
