@@ -31,15 +31,17 @@ Der bereitgestellte Wert kann genutzt werden um die beste Kameraperspektive mit 
 
 (To-Do : Klasse noch unvollstaendig, ausfuehrliche Doku folgt zu einem spaeteren Zeitpunkt.) 
 
+### CutterController
+Diese Klasse übernimmt das <b>Zusammenschneiden</b> aller Videos basierend auf den Ergebnissen des Algorithmus. Der CutterController bekommt im Konstruktur eine Liste an <b>Quellpfaden</b>, die Algoergebnisse in Form einer <b>Tupelliste</b> und die <b>Framerate</b> für das Ausgabevideo. Es wird davon ausgegangen, dass der Benutzer Videos mit gleicher Framerate auswählt. Die <b>Cut-Methode</b> führt den eigentlichen Schnitt mit der <code>movie-py</code> lib aus.
+
+Der Cutter wurde in seiner Funktionalität dahingehend erweitert, dass er nun auch das Synchronisieren von Eingabevideos übernimmt. Hierzu wird der <code>SyncController</code> eingesetzt, der den abzuschneidenen Teil anhand der Audiospur ermittelt.
+
 ## View
 
 ### GUI
 Diese Klasse dient der <b>Benutzerfreundlichkeit</b>, sowie der <b>Visualisierung</b> von Prozessen anderer Klassen.
 Sie vereint alle im Programm vorhandenen Funktionalitäten und führt diese, infolge an einen entsprechenden Input, auch aus.
 Aufgerufen und instanziiert wird sie in der Klasse: <b>App</b>
-
-### VideoCutter
-Diese Klasse übernimmt das <b>Zusammenschneiden</b> aller Videos basierend auf den Ergebnissen des Algorithmus. Der VideoCutter bekommt im Konstruktur eine Liste an <b>Quellpfaden</b>, den gewünschten <b>Ausgabepfad</b>, die Algoergebnisse in Form einer <b>Tupelliste</b> und die <b>Framerate</b>. In der aktuellsten Version wird die <b>Framerate</b> automatisch anhand des ersten Videos berechnet. Es wird davon ausgegangen, dass der Benutzer in der Länge synchronisierte Videos mit gleicher Framerate auswählt. Die <b>Cut-Methode</b> führt den eigentlichen Schnitt mit der <code>movie-py</code> lib aus.
 
 ### ProgressCalculator
 Diese Klasse errechnet eine <b>Prozentzahl</b>, die an die Progressbar übergeben wird. Der Konstruktor bekommt eine Liste an <b>Videoquellpfaden</b> und errechnet alle weiteren Attribute selbst. Die <b>Calculate-Methode</b> betrachtet die <b>JSON-Ordner</b>, prüft die aktuelle Anzahl an Dateien und stellt sie ins Verhältnis zum erwarteten Endwert an Dateien. Die Kommunikation zwischen Progressbar und Calculator ist noch in Bearbeitung.
