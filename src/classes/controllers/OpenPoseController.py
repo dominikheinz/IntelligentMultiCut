@@ -46,12 +46,12 @@ class OpenPoseController(Base):
 
             file = os.path.abspath(file)
 
-            param = " --video " + file + " --write_keypoint_json " + os.path.abspath(
-                "../export/json/" + str(self.video_counter)) + display + face_tracking
+            param = " --video \"" + file + "\" --write_keypoint_json \"" + os.path.abspath(
+                "../export/json/" + str(self.video_counter)) + "\"" + display  + face_tracking
 
             # Führt die OpenPose Demo aus mit allen zur Verfügung gestellten Parametern.
             self.__execute__(param)
-            
+
             # Erhöht den Video Counter, um einen neuen Ordner für weitere Videospuren mit einem anderen Namen erstellen zu können.
             self.video_counter += 1
 

@@ -1,5 +1,5 @@
 {
-    "algorithm": 2,
+    "algorithm": 1,
     "app_title": "Intelligent MultiCut",
     "app_version": 1.0,
     "auto_sync": false,
@@ -7,9 +7,9 @@
     "color_fg": "#3299FD",
     "color_red": "#E81123",
     "db_threshold": -10,
-    "debug": true,
+    "debug": false,
     "display_cutterpreview": true,
-    "display_openpose": false,
+    "display_openpose": true,
     "font_color": "white",
     "max_cameras": 6,
     "openfolder": true,
@@ -17,6 +17,6 @@
     "show_algo_graphs": true,
     "theme": 0,
     "video_codec": "MJPG",
-    "video_height": 720,
-    "video_width": 1280
+    "video_height": 1280,
+    "video_width": 720
 }
