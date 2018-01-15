@@ -2,7 +2,7 @@
     "algorithm": 1,
     "app_title": "Intelligent MultiCut",
     "app_version": 1.0,
-    "auto_sync": true,
+    "auto_sync": false,
     "color_bg": "#1D1D1D",
     "color_fg": "#3299FD",
     "color_red": "#E81123",
@@ -17,6 +17,6 @@
     "show_algo_graphs": false,
     "theme": 0,
     "video_codec": "MJPG",
-    "video_height": 1280,
-    "video_width": 720
+    "video_height": 720,
+    "video_width": 1280
 }

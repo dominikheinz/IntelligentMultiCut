@@ -11,6 +11,7 @@ from src.classes.controllers.CleanController import CleanerController
 import time
 from tkinter import filedialog
 import shutil
+import subprocess
 import os
 import pprint
 
@@ -126,7 +127,8 @@ class View(Base):
         folder_path = path[0:index]
 
         if (self.config.get('openfolder') == True):
-            os.system("start " + folder_path)
+            folder_path = os.path.normpath(folder_path)
+            subprocess.Popen(r'explorer /open,' + folder_path)
 
         self.quit()
 
