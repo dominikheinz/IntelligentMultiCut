@@ -1,10 +1,9 @@
 # Intelligent MultiCut
 
 ## Setup
-Synchronisiere dein lokales Repository mit dem Remote Repsoitory auf Github.
-Eine anschließende Installation ist durch folgende Installationsanleitung beschrieben
-https://github.com/andredoering/multicut/wiki/Installation
-
+Synchronisiere dein lokales Repository mit dem Remote Repsoitory auf Github.  
+Für eine anschließende Installation bitte diese [Installationsanleitung](https://github.com/andredoering/multicut/wiki/Installation) 
+befolgen
 
 ## Dokumentationen 
 * [Klassen und Architektur](https://github.com/andredoering/multicut/blob/master/src/README.md)
