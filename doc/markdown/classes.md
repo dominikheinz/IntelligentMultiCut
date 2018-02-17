@@ -32,7 +32,7 @@ Der bereitgestellte Wert kann genutzt werden um die beste Kameraperspektive mit 
 (To-Do : Klasse noch unvollstaendig, ausfuehrliche Doku folgt zu einem spaeteren Zeitpunkt.) 
 
 ### CutterController
-Diese Klasse übernimmt das <b>Zusammenschneiden</b> aller Videos basierend auf den Ergebnissen des Algorithmus. Der CutterController bekommt im Konstruktur eine Liste an <b>Quellpfaden</b>, die Algoergebnisse in Form einer <b>Tupelliste</b> und die <b>Framerate</b> für das Ausgabevideo. Es wird davon ausgegangen, dass der Benutzer Videos mit gleicher Framerate auswählt. Die <b>Cut-Methode</b> führt den eigentlichen Schnitt mit der <code>movie-py</code> lib aus.
+Diese Klasse übernimmt das <b>Zusammenschneiden</b> aller Videos basierend auf den Ergebnissen des Algorithmus. Der CutterController bekommt im Konstruktur eine Liste an <b>Quellpfaden</b>, die Algoergebnisse in Form einer <b>Tupelliste</b> und die <b>Framerate</b> für das Ausgabevideo. Es wird davon ausgegangen, dass der Benutzer Videos mit gleicher Framerate auswählt. Die <b>Cut-Methode</b> führt den eigentlichen Schnitt mit der <code>OpenCV</code> lib aus.
 
 Der Cutter wurde in seiner Funktionalität dahingehend erweitert, dass er nun auch das Synchronisieren von Eingabevideos übernimmt. Hierzu wird der <code>SyncController</code> eingesetzt, der den abzuschneidenen Teil anhand der Audiospur ermittelt.
 
