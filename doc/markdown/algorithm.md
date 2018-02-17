@@ -28,7 +28,7 @@ Der Singleperson-Algorithmus errechnet errechnet in jedem Frame von der erkannte
 Anschließend wird davon der Durchschnitt errechnet. Das hat zur Folge, dass die Kamera, in der die Person, bei der mehr Gelenke erkannt werden, einen höheren Score zugeteilt bekommt. Dementsprechend wird immer auf die Kamera geschaltet, in der von der Person möglichst viele Körperteile mit einer hohen Genauigkeit erkannt werden.
 Die Methode <code>def run_pose_algorithm(self, show_graph):</code> wendet den Algorithmus auf die im Konstruktor übergebenen Frames an und gibt das ein Array zurück, das angibt wie die Clips geschnitten werden müssen.
 Der boolsche Parameter <code>show_graph</code> bietet die Möglichkeit, einen Graphen nach erfolgreicher Prozessierung anzuzeigen um nachvollziehen zu können, wie der Algorithmus gearbeitet hat.
-Hier ist das Beispiel einer Person, die in einem Gang zwischen zwei Kameras auf und ab laeuft.
+Hier ist das Beispiel einer Person, die in einem Gang zwischen zwei Kameras auf und ab läuft.
 
 ![alt-text-2](https://i.imgur.com/alesAzE.jpg)
 
