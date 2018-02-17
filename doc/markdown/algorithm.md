@@ -61,23 +61,23 @@ Nach erfolgreicher Bearbeitung gibt die <code>def run_distance_algorithm(self, s
 
 ### 3. Korrekturmaßnahmen
 
-Nicht selten kommt es vor dass das OpenPose Framework bei der Videoanalyse Personen falsch erkennt. Diese Messfehler beinflussen die Ergebnisse der Algorithmen. 
+Nicht selten kommt es vor, dass das OpenPose Framework bei der Videoanalyse Personen falsch erkennt. Diese Messfehler beinflussen die Ergebnisse der Algorithmen. 
 Aus diesem Grund werden Messdaten mithilfe eines Smoothing Algorithmus korrigiert.
 Die Messdaten werden mithilfe von <b>median filtering</b> geglättet.
-Dabei gibt der smoothing factor <code>s</code> an wieviele Werte links und rechts in die Glattung mit einberechnet werden.
-Die Werte werden nach groesse sortiert und der mittlere Wert wird verwendet.
-Nehmen wir an wir haben ein smoothing factor von <code>3</code>
-Das heisst wir pruefen von unserem aktuellen Wert, bspw. <code>7</code> je 3 Werte davor und danach.
-Das koennte Bspw so aussehen: <code>[4,8,6,7,9,6,4]</code>. Diese Werte werden sortiert. Das ergibt folgende Zahlenfolge:
-<code>[4,4,6,6,7,8,9]</code>. Davon wird der mittlere Wert, also <code>6</code> wird verwerwendet.
+Dabei gibt der smoothing factor <code>s</code> an, wie viele Werte links und rechts in die Glattung mit einberechnet werden.
+Die Werte werden nach Größe sortiert und der mittlere Wert wird verwendet.
+Nehmen wir an, wir haben ein smoothing factor von <code>3</code>.
+Das heißt, wir prüfen von unserem aktuellen Wert, bspw. <code>7</code> je 3 Werte davor und danach.
+Das könnte bspw. so aussehen: <code>[4,8,6,7,9,6,4]</code>. Diese Werte werden sortiert. Das ergibt folgende Zahlenfolge:
+<code>[4,4,6,6,7,8,9]</code>. Davon wird der mittlere Wert, also <code>6</code> verwendet.
 
 Hier ein Beispiel von einem un-gesmoothtem Graph (am Bsp Distance Detection Algorithmus):
 ![alt-text-2](https://i.imgur.com/mniifra.jpg)
 
-Man erkennt die Ausschlaege in dem Graphen, was ohne einen Threshold zu flickering beim Output-Video kommt.
-Die Messfehler kommen grossteils wegen der <b>Messfehler von Openpose</b>.
+Man erkennt die Ausschläge in dem Graphen, was ohne einen Threshold zu flickering beim Output-Video kommt.
+Die Messfehler kommen großteils wegen der <b>Messfehler von Openpose</b>.
 Hier der selbe Graph nach der Fehlerkorrektur:
 
 ![alt-text-2](https://i.imgur.com/NC5ECoW.jpg)
 
-Die Ubergange haben keine grossen Ausreisser mehr und die Ubergange sind glatter.
+Die Übergänge haben keine großen Ausreißer mehr und die Übergänge sind glatter.
