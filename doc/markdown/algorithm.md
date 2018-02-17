@@ -17,14 +17,14 @@ Intelligent Multicut stellt <b>4 verschiedene Algorithmen</b> zur Verfügung, di
 Der AlgorithmController ist für die <b>Steuerung der einzelnen Algorithmen</b> zuständig.
 Er wird im Konstruktor mit einem <code>MetaDataController</code> Objekt initialisiert.
 Die Klasse bietet zwei Funktionen <code>run_algorithm(self, algo_id)</code> und <code>filter_cut_frames(self, switch_frames)</code>.
-Die <code>filter_cut_frames(self, switch_frames)</code> Methode extrahiert die Frames an denen die Videos gecuttet werden sollen.
-Die <code>run_algorithm(self, algo_id)</code> Methode wendet einen Algorithmus auf die im Konstruktor übergebenen Metadaten an. Der Parameter <code>algo_id</code> kann <code>0</code>, <code>1</code>, <code>2</code> oder <code>3</code> sein und verwendet dementsprechend die versch. Algorithmen.
+Die <code>filter_cut_frames(self, switch_frames)</code> Methode extrahiert die Frames, an denen die Videos gecuttet werden sollen.
+Die <code>run_algorithm(self, algo_id)</code> Methode wendet einen Algorithmus auf die im Konstruktor übergebenen Metadaten an. Der Parameter <code>algo_id</code> kann <code>0</code>, <code>1</code>, <code>2</code> oder <code>3</code> sein und verwendet dementsprechend die verschiedenen Algorithmen.
 
 ### 2. Algorithmen
 
 #### 2.1. Singleperson
 
-Der Singleperson-Algorithmus errechnet errechnet in jedem Frame von der erkannten Person die Genauigkeit aller Gelenke.
+Der Singleperson-Algorithmus errechnet in jedem Frame von der erkannten Person die Genauigkeit aller Gelenke.
 Anschließend wird davon der Durchschnitt errechnet. Das hat zur Folge, dass die Kamera, in der die Person, bei der mehr Gelenke erkannt werden, einen höheren Score zugeteilt bekommt. Dementsprechend wird immer auf die Kamera geschaltet, in der von der Person möglichst viele Körperteile mit einer hohen Genauigkeit erkannt werden.
 Die Methode <code>def run_pose_algorithm(self, show_graph):</code> wendet den Algorithmus auf die im Konstruktor übergebenen Frames an und gibt das ein Array zurück, das angibt wie die Clips geschnitten werden müssen.
 Der boolsche Parameter <code>show_graph</code> bietet die Möglichkeit, einen Graphen nach erfolgreicher Prozessierung anzuzeigen um nachvollziehen zu können, wie der Algorithmus gearbeitet hat.
