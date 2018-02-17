@@ -44,7 +44,7 @@ Die Kamera in der eine Person am naehsten zur Kamera steht bekommt einen hoehere
 
 #### 2.3. Multiperson Peoplecount
 
-Der Multiperson-Peoplecount Algorithmus prueft alle erkannten Personen in einem Frame. Die Kameraperspektive in der die meisten Personen erkannt werden, wird bevorzugt.
+Der Multiperson-Peoplecount Algorithmus prüft alle erkannten Personen in einem Frame. Die Kameraperspektive in der die meisten Personen erkannt werden, wird bevorzugt.
 
 #### 2.4. DistanceDetection
 
@@ -53,7 +53,7 @@ Der Distance Detection Algorithmus wählt die Kamera in der die erkannte Person 
 <img src="Distance1.gif?raw=true"> ![alt-text-2](https://i.imgur.com/aDejcoV.jpg)
 
 Der Algorithmus errechnet anhand von <b>Augenabstand</b> und <b>Augen-Nasen-Abstand</b>.
-Je näher die Person an die Kamera kommt desto groesser werden die Abstände und dementsprechend der finale Score.
+Je näher die Person an die Kamera kommt desto größer werden die Abstände und dementsprechend der finale Score.
 Der Algorithmus wird im Konstruktor mit den Frames initialisiert.
 Die Methode <code>def run_distance_algorithm(self, show_graph):</code> wendet den Algorithmus auf die Frames an.
 Der boolsche Parameter <code>show_graph</code> bietet die Möglichkeit einen Graphen nach erfolgreicher Prozessierung anzuzeigen um nachvollziehen zu können wie der Algorithmus gearbeitet hat.
@@ -64,14 +64,14 @@ Nach erfolgreicher Bearbeitung gibt die <code>def run_distance_algorithm(self, s
 Nicht selten kommt es vor, dass das OpenPose Framework bei der Videoanalyse Personen falsch erkennt. Diese Messfehler beinflussen die Ergebnisse der Algorithmen. 
 Aus diesem Grund werden Messdaten mithilfe eines Smoothing Algorithmus korrigiert.
 Die Messdaten werden mithilfe von <b>median filtering</b> geglättet.
-Dabei gibt der smoothing factor <code>s</code> an, wie viele Werte links und rechts in die Glattung mit einberechnet werden.
+Dabei gibt der smoothing factor <code>s</code> an, wie viele Werte links und rechts in die Glättung mit einberechnet werden.
 Die Werte werden nach Größe sortiert und der mittlere Wert wird verwendet.
 Nehmen wir an, wir haben ein smoothing factor von <code>3</code>.
 Das heißt, wir prüfen von unserem aktuellen Wert, bspw. <code>7</code> je 3 Werte davor und danach.
 Das könnte bspw. so aussehen: <code>[4,8,6,7,9,6,4]</code>. Diese Werte werden sortiert. Das ergibt folgende Zahlenfolge:
 <code>[4,4,6,6,7,8,9]</code>. Davon wird der mittlere Wert, also <code>6</code> verwendet.
 
-Hier ein Beispiel von einem un-gesmoothtem Graph (am Bsp Distance Detection Algorithmus):
+Hier ein Beispiel von einem ungesmoothtem Graph (am Bsp. Distance Detection Algorithmus):
 ![alt-text-2](https://i.imgur.com/mniifra.jpg)
 
 Man erkennt die Ausschläge in dem Graphen, was ohne einen Threshold zu flickering beim Output-Video kommt.
