@@ -25,30 +25,30 @@ Die <code>run_algorithm(self, algo_id)</code> Methode wendet einen Algorithmus a
 #### 2.1. Singleperson
 
 Der Singleperson-Algorithmus errechnet errechnet in jedem Frame von der erkannten Person die Genauigkeit aller Gelenke.
-Anschliessend wird davon der Durchschnitt errechnet. Das hat zur Folge die Kamera in der die Person bei der mehr Gelenke erkannt werden einen höheren Score zugeteilt bekommen. Dementsprechend wird immer auf die Kamera geschaltet in der von der Person möglichst viele Körperteile mit einer hohen Genauigkeit erkannt werden.
-Die Methode <code>def run_pose_algorithm(self, show_graph):</code> wendet den Algorithmus auf die im Konstruktor übergebenen Frames an und gibt das ein Array zurück das angibt wie die Clips geschnitten werden müssen.
-Der boolsche Parameter <code>show_graph</code> bietet die Möglichkeit einen Graphen nach erfolgreicher Prozessierung anzuzeigen um nachvollziehen zu können wie der Algorithmus gearbeitet hat.
-Hier ist das Beispiel einer Person die in einem Gang zwischen zwei Kameras auf und ab laeuft.
+Anschließend wird davon der Durchschnitt errechnet. Das hat zur Folge, dass die Kamera, in der die Person, bei der mehr Gelenke erkannt werden, einen höheren Score zugeteilt bekommt. Dementsprechend wird immer auf die Kamera geschaltet, in der von der Person möglichst viele Körperteile mit einer hohen Genauigkeit erkannt werden.
+Die Methode <code>def run_pose_algorithm(self, show_graph):</code> wendet den Algorithmus auf die im Konstruktor übergebenen Frames an und gibt das ein Array zurück, das angibt wie die Clips geschnitten werden müssen.
+Der boolsche Parameter <code>show_graph</code> bietet die Möglichkeit, einen Graphen nach erfolgreicher Prozessierung anzuzeigen um nachvollziehen zu können, wie der Algorithmus gearbeitet hat.
+Hier ist das Beispiel einer Person, die in einem Gang zwischen zwei Kameras auf und ab laeuft.
 
 ![alt-text-2](https://i.imgur.com/alesAzE.jpg)
 
-Ist die Person mit dem Ruecken zu der einen Kamera gedreht ist sie von der Vorderseite von der anderen Seite zu sehen.
-Dementsprechend ist die Genauigkeit der Posenerkennung geringer wenn man die Person von der Rueckseite sieht.
-Der Graph zeigt wie die Genaugkeit wischen den zwei Kameras zyklisch wechselt, - mit jeder Drehung weg von der einen zu der anderen Kamera.
+Ist die Person mit dem Rücken zu der einen Kamera gedreht, ist sie von der Vorderseite von der anderen Seite zu sehen.
+Dementsprechend ist die Genauigkeit der Posenerkennung geringer, wenn man die Person von der Rückseite sieht.
+Der Graph zeigt wie die Genaugkeit wischen den zwei Kameras zyklisch wechselt - mit jeder Drehung weg von der einen zu der anderen Kamera.
 
 #### 2.2. Multiperson Closeup
 
 Der Multiperson-Closeup Algorithmus vereint den Distance Detection Algorithmus und den Mutiperson Algorithmus.
-Der Algorithmus prueft von allen erkannten Personen in einem Frame welche am naehsten zur Kamera steht.
-Die Kamera in der eine Person am naehsten zur Kamera steht bekommt einen hoeheren Score und wird dementsprechend den anderen bevorzugt.
+Der Algorithmus prüft von allen erkannten Personen in einem Frame, welche am nähsten zur Kamera steht.
+Die Kamera, in der eine Person am nähsten zur Kamera steht, bekommt einen höheren Score und wird dementsprechend gegenüber den anderen bevorzugt.
 
 #### 2.3. Multiperson Peoplecount
 
-Der Multiperson-Peoplecount Algorithmus prüft alle erkannten Personen in einem Frame. Die Kameraperspektive in der die meisten Personen erkannt werden, wird bevorzugt.
+Der Multiperson-Peoplecount Algorithmus prüft alle erkannten Personen in einem Frame. Die Kameraperspektive, in der die meisten Personen erkannt werden, wird bevorzugt.
 
 #### 2.4. DistanceDetection
 
-Der Distance Detection Algorithmus wählt die Kamera in der die erkannte Person am nähsten an der Kamera ist.
+Der Distance Detection Algorithmus wählt die Kamera, in der die erkannte Person am nähsten an der Kamera ist.
 
 <img src="Distance1.gif?raw=true"> ![alt-text-2](https://i.imgur.com/aDejcoV.jpg)
 
