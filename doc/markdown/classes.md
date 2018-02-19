@@ -36,6 +36,9 @@ Diese Klasse übernimmt das <b>Zusammenschneiden</b> aller Videos basierend auf 
 
 Der Cutter wurde in seiner Funktionalität dahingehend erweitert, dass er nun auch das Synchronisieren von Eingabevideos übernimmt. Hierzu wird der <code>SyncController</code> eingesetzt, der den abzuschneidenen Teil anhand der Audiospur ermittelt.
 
+### SnycController
+Diese Klasse übernimmt das Synchronisieren von Videos über die Detektion eines lauten Geräusches. Aus allen Videos werden die Tonspuren extrahiert und analysiert. Findet der Controller einen Ausschlag in der Lautstärkekurve, der einen gewissen Grenzbereich überschreitet, so wird dieser Zeitpunkt als neuer Startzeitpunkt für das Video genommen. Der Bereich bis zum neuen Startpunkt wird durch den CutterController abgeschnitten.
+
 ## View
 
 ### GUI
