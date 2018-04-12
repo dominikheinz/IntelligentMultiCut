@@ -7,6 +7,17 @@ Automated video cutting based on neural networks for human pose and face analysi
 More detailed information can be found in **[Algorithms](#algorithms)**.
 This project was developed in three months for a university assignment. 
 
+## Architecture
+
+### Model
+Every class that acts as model such as `User`, `MetaDta` etc can be found under `src/classes/models/` and can be used from a controller class.
+
+### Controller
+All controller classes are stored at `src/classes/controllers/`. Controller classes inherit from the base class and can access the core attributres (such as Config) of the parent.
+
+### View
+All classes related to the graphical user interface are stored here. Data is passed from the `View` to the `Controller` for further proceessing and returned to the GUI upon completion. 
+
 ## Algorithms
 *Intelligent MultiCut* offers 4 different algorithms for different scenarios. Each algorithm is controlled via `AlgorithmController.py`. 
 
@@ -69,4 +80,6 @@ To install *Intelligent MultiCut* on windows..... todo
 - [FFMPEG](https://ffmpeg.zeranoe.com/builds/)
 - NVIDIA GPU (min. 1,6 GB RAM) + CUDA 8 + cuDNN 5.1
 
-## Licewith CUDAnse
+## License
+
+todo
