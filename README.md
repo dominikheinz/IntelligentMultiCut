@@ -18,7 +18,7 @@ This project was developed in three months for a university assignment.
     -   Distance Detection
 3.  Error correction
 
-### 1. AlgorithmController
+### 1 AlgorithmController
 The `AlgorithmController` is used to control each algorithm. To initialize a new `AlgorithmController` object a `MetaDataController` object must be provided. The class offers two functions  `run_algorithm(self, algo_id)` and `filter_cut_frames(self, switch_frames)`. 
 The `filter_cut_frames(self, switch_frames)` method is used to extract relevant frames from the video.  The `run_algorithm(self, algo_id)` method uses an algorithm on the in the constructor provided metadata.  Valid values for the  `algo_id` parameter are `0`, `1`, `2` or `3`.
 
@@ -45,6 +45,19 @@ By measuring the distance from the detected person to the camera the distance de
 
 By calculating the eye distance and the eye-nose distance the algorithm calculates a score. When a person comes closer to the camera the score increases. The method`def run_distance_algorithm(self, show_graph):` applies the algorithm on the frames provided in the constructor. The `show_graph` parameter shows a graph after successful processing.
 After successful processing `def run_distance_algorithm(self, show_graph):` returns an array with information which video clip should be cut at which timestamp.
+
+#### 3 Error correction
+
+In some cases the OpenPose framework fails to properly detect people during the video analysis. These measurement errors falsify the reults of the algorithms. To counter this issue a smoothing algorithm got implemented. By using <b>median filtering</b> the measured data is corrected. The smoothing factor `s` defines how many values to the left and right should be used to calculate a correected value. The values get sorted in ascending order and the middle value is used. E.g. Let's assume we have a smoothing factor of <code>3</code>. That means `3` values to the left and right are included. That gives us `7` values, for example `[4,8,6,7,9,6,4]`. These values are sorted and the middle value is picked. `[4,4,6,6,7,8,9]` -> `6`. This makes it possible to ignore score spikes caused my missdetection.
+For comparison a raw graph and a smooth graph on the example of the distance detection algorithm:
+
+![alt-text-2](https://i.imgur.com/mniifra.jpg)
+
+(Before error correection)
+
+![alt-text-2](https://i.imgur.com/NC5ECoW.jpg)
+
+(After error correection)
 
 ## Installation
 
