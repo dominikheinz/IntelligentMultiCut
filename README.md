@@ -3,6 +3,9 @@
 Automated video cutting based on neural networks for human pose and face analysis.
 
 ## Overview
+
+![alt-text-2](https://i.imgur.com/m4bFb0z.png)
+
 *Intelligent MultiCut* is a PoC for automated video cutting based on human pose detection and analysis. This project uses the [OpenPose library](https://github.com/CMU-Perceptual-Computing-Lab/openpose) for pose and face detection. *Intelligent MultiCut* chooses the best camera position based on best pose and face estimation. It utilizes different algorithms to evaluate pose and face orientation as well as the distance to the camera to choose the best scenes. 
 More detailed information can be found in **[Algorithms](#algorithms)**.
 This project was developed in three months for a university assignment. 
@@ -72,7 +75,7 @@ For comparison a raw graph and a smooth graph on the example of the distance det
 
 ## Installation
 
-To install *Intelligent MultiCut* on windows..... todo
+ToDo Add windows installation guide
 
 ## Dependencies & Requirements
 - [OpenPose library](https://github.com/CMU-Perceptual-Computing-Lab/openpose)
@@ -82,4 +85,4 @@ To install *Intelligent MultiCut* on windows..... todo
 
 ## License
 
-todo
+ToDo Add License
