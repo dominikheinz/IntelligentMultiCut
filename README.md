@@ -37,6 +37,15 @@ The Multiperson Closeup algorithm is a combination of the distance detection and
 
 The Multiperson Peoplecount algorithm checks which frame has the most people. The camera perspective with most recognized people is selected.
 
+#### 2.4 Multiperson Peoplecount algorithm
+
+By measuring the distance from the detected person to the camera the distance detection algorithm evaluates the best scene. (The closer the better)
+
+<img src="/doc/markdown/Distance1.gif?raw=true"> ![alt-text-2](https://i.imgur.com/aDejcoV.jpg)
+
+By calculating the eye distance and the eye-nose distance the algorithm calculates a score. When a person comes closer to the camera the score increases. The method`def run_distance_algorithm(self, show_graph):` applies the algorithm on the frames provided in the constructor. The `show_graph` parameter shows a graph after successful processing.
+After successful processing `def run_distance_algorithm(self, show_graph):` returns an array with information which video clip should be cut at which timestamp.
+
 ## Installation
 
 To install *Intelligent MultiCut* on windows..... todo
