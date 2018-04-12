@@ -1,38 +1,42 @@
+
 # Intelligent MultiCut
+Automated video cutting using neural networks for human pose and face analysis.
 
-## Setup
-* Synchronisiere dein lokales Repository mit dem Remote Repsoitory auf Github.  
-* Anschließend diese [Installationsanleitung](https://github.com/andredoering/multicut/wiki/Installation) 
-befolgen
+## Overview
+*Intelligent MultiCut* is a PoC for automated video cutting based on human pose detection and analysis. This project uses the [OpenPose library](https://github.com/CMU-Perceptual-Computing-Lab/openpose) for pose and face detection. *Intelligent MultiCut* chooses the best camera position based on best pose and face estimation. It utilizes different algorithms to evaluate pose and face orientation as well as the distance to the camera to choose the best scenes. 
+More detailed information can be found in **[Algorithms](#algorithms)**.
+This project was developed in three months for a university assignment. 
 
-## Dokumentationen 
-* [Klassen und Architektur](https://github.com/andredoering/multicut/blob/master/src/README.md)
-* [Best Practise Error Ausgaben](https://github.com/andredoering/multicut/blob/master/doc/markdown/errors.md)
-* [Algorithmen Erklärung](https://github.com/andredoering/multicut/blob/master/doc/markdown/algorithm.md)
+## Algorithms
+*Intelligent MultiCut* offers 4 different algorithms for different scenarios. Each algorithm is controlled via `AlgorithmController.py`. 
 
-## Hinzufügen von Config Attributen
-1. Füge ein weiteres Key-Value Pair in die `src/config.json`. Es gehen auch  auch assoziative Arrays als Value. Tutorial zu [JSON](https://www.w3schools.com/js/js_json_syntax.asp)
-2. Der Zugriff auf die Eigenschaften geschieht über die Base Klasse `self.config.get("key")`
+1.  AlgorithmController
+2.  Algorithms
+    -   Singleperson
+    -   Multiperson Closeup
+    -   Multiperson Peoplecount
+    -   Distance Detection
+3.  Error correction
 
+### 1. AlgorithmController
+The `AlgorithmController` is used to control each algorithm. To initialize a new `AlgorithmController` object a `MetaDataController` object must be provided. The class offers two functions  `run_algorithm(self, algo_id)` and `filter_cut_frames(self, switch_frames)`. 
+The `filter_cut_frames(self, switch_frames)` method is used to extract relevant frames from the video.  The `run_algorithm(self, algo_id)` method uses an algorithm on the in the constructor provided metadata.  Valid values for the  `algo_id` parameter are `0`, `1`, `2` or `3`.
 
-## Base Class
-Jede Klasse die von `Base` erbt, hat Zugriff auf Grundfunktionalitäten, die sinnvollerweise allen Klassen zur Verfügung stehen sollten (zum Beispiel Config Daten). 
-So kannst du von Core erben:
+#### 2.1 Singleperson algorithm
+The singleperson algorithm calculates an average score based on the precision of each detect pose joint. Therefore the camera view which detects more body joints get a higher score and are more likely to be selected. Calling `def run_pose_algorithm(self, show_graph):` applies the algorithm on the frames provided in the constructor. It returns an array which contains metadata on how video clips need to be cut. The `show_graph` parameter shows a graph after successful processing. This is an example of a person walking up and down in a hallway between two cameras.
 
-    from src.classes.core.Base import Base
-    class MyClass(Base):
-        # dein Code
+TODO INSERT PIC
 
-        def __init(self):
-            print(self.config.get("debug"))
+When the person is facing the camera a higher score is given compared to the camera only seeing the persons back. When the person turns around the graphs switch to the opposite.
 
-Die Base Klasse kann gerne erweitert werden um weitere Funktionalitäten, die allen zur Verfügung stehen sollten. Zum Beispiel eine Logging Klasse.
+## Installation
 
+To install *Intelligent MultiCut* on windows..... todo
 
-## Getestete Codecs (CutterController)
-`MJPG` - extrem hohe Bitrate, große .AVI Dateien
+## Dependencies & Requirements
+- [OpenPose library](https://github.com/CMU-Perceptual-Computing-Lab/openpose)
+- [OpenCV](https://github.com/opencv/opencv)
+- [FFMPEG](https://ffmpeg.zeranoe.com/builds/)
+- NVIDIA GPU (min. 1,6 GB RAM) + CUDA 8 + cuDNN 5.1
 
-`DIVX` - niedrige Bitrate, kleine .AVI Dateien
-
-
-
+## Licewith CUDAnse
