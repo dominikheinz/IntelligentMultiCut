@@ -71,17 +71,21 @@ For comparison a raw graph and a smooth graph on the example of the distance det
 
 ![alt-text-2](https://i.imgur.com/NC5ECoW.jpg)
 
-(After error correection)
+(After error correction)
 
 ## Installation
 
-ToDo Add windows installation guide
+1. Download the [OpenPose Demo](http://posefs1.perception.cs.cmu.edu/OpenPose/OpenPose_demo_1.0.1.zip). 
+2. Download and install [Python 3.6.3](https://www.python.org/downloads/).
+3. Run the install script in `%YOUR_LOCATION%/multicut/installer/setup_win_64.bat`. It will download all the missing python dependencies, ffmpeg etc.
+4. Start the program using the `Intelligent_Multicut.bat` in the root directory.
 
 ## Dependencies & Requirements
 - [OpenPose library](https://github.com/CMU-Perceptual-Computing-Lab/openpose)
 - [OpenCV](https://github.com/opencv/opencv)
 - [FFMPEG](https://ffmpeg.zeranoe.com/builds/)
 - NVIDIA GPU (min. 1,6 GB RAM) + CUDA 8 + cuDNN 5.1
+- Python Packages: moviepy,numpy,OpenCV(3.3.1),psutil,pydub,matplotlib
 
 ## License
 
